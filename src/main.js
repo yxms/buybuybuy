@@ -5,9 +5,9 @@ import App from './App.vue'
 import "./assets/statics/site/css/style.css";
 // 导入路由
 import VueRouter from 'vue-router';
-
+//引入index组件
 import index from './components/index.vue'
-
+// use一下
 Vue.use(VueRouter);
 
 const routes = [
@@ -28,5 +28,6 @@ const router = new VueRouter({
 Vue.config.productionTip = false
 
 new Vue({
-  render: h => h(App)
+  render: h => h(App),
+  router
 }).$mount('#app')

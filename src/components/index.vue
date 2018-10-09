@@ -547,11 +547,43 @@
 </template>
 
 <script>
+import axios from "axios";
+
+import moment from "moment";
+
 export default {
-name:'index'
-}
+  name: "index",
+  // 过滤器
+  filters: {
+    beautifyTime(value) {
+      // 处理value
+      // 返回处理后的value
+      return moment(value).format("YYYY年MM月DD日")
+    }
+  },
+  data: function() {
+    return {
+      // 分类
+      catelist: [],
+      //   轮播图
+      sliderlist: [],
+      //   热卖列表
+      toplist: []
+    };
+  },
+  //   生命周期函数
+  // 创建完毕 才能访问到vue组件中的内容
+  created() {
+    axios
+      .get("http://111.230.232.110:8899/site/goods/gettopdata/goods")
+      .then(response => {
+        this.catelist = response.data.message.catelist;
+        this.sliderlist = response.data.message.sliderlist;
+        this.toplist = response.data.message.toplist;
+      });
+  }
+};
 </script>
 
 <style>
-
 </style>
