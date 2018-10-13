@@ -59,7 +59,7 @@
                                         <dd>
                                             <div id="buyButton" class="btn-buy">
                                                 <button onclick="cartAdd(this,'/',1,'/shopping.html');" class="buy">立即购买</button>
-                                                <button onclick="cartAdd(this,'/',0,'/cart.html');" class="add">加入购物车</button>
+                                                <button @click="addCart" class="add">加入购物车</button>
                                             </div>
                                         </dd>
                                     </dl>
@@ -300,6 +300,14 @@ export default {
             // 提示用户
             this.$Message.success('评论发表成功了也');
         })
+    },
+    // 加入购物车
+    addCart(){
+        // 调用Vuex中的数据修改方法 提交载荷
+        this.$store.commit("addCart",{
+            id:this.goodId,
+            buyCount:this.num1
+        });
     }
   },
   // created中获取id 因为一会就要去调用接口
